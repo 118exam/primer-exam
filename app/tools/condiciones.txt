@@ -1,0 +1,8 @@
+1. montarlo en gitHub
+2. post, get, get, put, delete
+3. Crear base de datos => tabal minimo un campo
+4. Exportar la BD y save el proyecto
+5. Crear la collage y save el proyrcto
+6. No montar la folfer node_modules a gitHub
+7. Contruir el distribuidor distribuidor
+8.sacar apuntes

@@ -1,30 +1,79 @@
-import {pool} from "../config/db.mysql.js";
+import { pool } from "../config/db.mysql.js";
 
-export const mostrarFactura = async(req, res) =>{
+export const mostrarFactura = async(req, res) => {
 
     let id = req.params['id'];
 
     try {
         const respuesta = await pool.query(`CALL sp_MostrarFactura(${id});`);
-        res.json({ "res" : respuesta})
+        res.json({ "res": respuesta })
     } catch (error) {
-        res.json({ "error" : error })
+        res.json({ "error": error })
     }
-    
-}
 
-export const ListarFactura = (req, res) =>{
-    
-}
+};
 
-export const crearFactura = (req, res) =>{
-    
-}
+export const ListarFactura = async(req, res) => {
+    try {
+        const respuesta = await pool.query(`CALL sp_ListarFactura();`);
+        res.json({ "res": respuesta })
+    } catch (error) {
+        res.json({ "error": error })
+    }
+};
 
-export const modificarFactura = (req, res) =>{
-    
-}
+export const crearFactura = async(req, res) => {
 
-export const eliminarFactura = (req, res) =>{
+    const nombre = req.body.nombre;
+    const total = req.body.total;
+    console.log(req);
+
+    try {
+        const respuesta = await pool.query(`CALL sp_CrearFactura('${nombre}', '${total}');`);
+
+        if(respuesta[0].affectedRows == 1){
+            res.json({ "res" : respuesta})
+        }else{
+            res.json({ "error" : "No se pudo Crear la Factura" })
+        }
+
+    } catch (err) {
+        res.json({ "error" : err })
+    }
+};
+
+export const modificarFactura = async(req, res) => {
+    let id = req.body.id;
+
+    try {
+        const respuesta = await pool.query(`CALL sp_ModificarFactura(${id});`);
+        if (respuesta[0].affectedRows == 1) {
+            res.json({ "res": respuesta })
+        } else {
+            res.json({ "error": "No se puedo Modificar la factura" })
+        }
+
+    } catch (erro) {
+        res.json({ "erro": erro })
+    }
+};
+
+export const eliminarFactura = async(req, res) => {
+
+    const id = req.body.id;
+
+    try {
+        const respuesta = await pool.query(`CALL sp_EliminarFactura(${id});`);
     
-}
+                                                                                                                                                                                                                                                                                               
+        if (respuesta[0].affectedRows == 1) {
+            res.json({ "res": respuesta })
+        } else {
+            res.json({ "error": "No se puedo Modificar la factura" })
+        }
+
+    } catch (erro) {
+        res.json({ "erro": erro })
+    }
+
+};
