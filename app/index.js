@@ -1,5 +1,6 @@
 import app from "./app.js";
 
-app.listen(3000, ()=>{
-    console.log("Backend - Ejecutandose en el puerto: 3000");
+
+app.listen(app.get("port"), ()=>{
+    console.log( `Backend - Ejecutandose en el puerto: http://localhost:${app.get("port")}` );
 })
