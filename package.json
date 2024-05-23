@@ -1,0 +1,27 @@
+{
+  "name": "examenapi",
+  "version": "1.0.0",
+  "description": "examen de la api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/118exam/primer-exam.git"
+  },
+  "author": "Marithza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/118exam/primer-exam/issues"
+  },
+  "homepage": "https://github.com/118exam/primer-exam#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
